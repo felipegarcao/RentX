@@ -50,4 +50,5 @@ describe("Create Category", () => {
       });
     }).rejects.toBeInstanceOf(AppError);
   });
+
 });
