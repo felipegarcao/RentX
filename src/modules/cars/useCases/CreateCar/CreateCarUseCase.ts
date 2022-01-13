@@ -13,10 +13,10 @@ interface IRequest {
   category_id: string;
 }
 
-// @injectable()
+@injectable()
 class CreateCarUseCase {
   constructor(
-    // @inject("CarsRepository")
+    @inject("CarsRepository")
     private carsRepository: ICarsRepository
   ) {}
   async execute({
@@ -42,7 +42,7 @@ class CreateCarUseCase {
       brand,
       category_id,
       fine_amount,
-      license_plate,
+      license_plate
     });
 
     return car;
