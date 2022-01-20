@@ -35,6 +35,29 @@ class CarsRepositoryInMemory implements ICarsRepository {
 
     return car;
   }
+
+  async findAvailable(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Car[]> {
+    // o find vai retornar somente um
+    // o filter pode retornar vários, ou seja, vários carros podem estar disponível
+
+    const all = this.cars.filter((car) => {
+      if (
+        car.available === true &&
+        ((brand && car.brand === brand) ||
+          (category_id && car.category_id === category_id) ||
+          (name && car.name === name))
+      ) {
+        return car;
+      }
+      return null;
+    });
+
+    return all;
+  }
 }
 
 export { CarsRepositoryInMemory };
