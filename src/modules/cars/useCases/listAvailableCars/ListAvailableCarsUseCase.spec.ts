@@ -23,8 +23,6 @@ describe("List Cars", () => {
 
     const cars = await listCarsUseCase.execute({});
 
-    console.log(cars)
-
     // eu espero que seja retornado as mesmas informação criadas acima.
     expect(cars).toEqual([car]);
   });
