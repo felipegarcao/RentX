@@ -4,6 +4,7 @@ import { v4 as uuidV4 } from "uuid";
 @Entity("rentals_cars")
 class Rental {
   
+  @PrimaryColumn()
   id: string;
 
   car_id: string;
