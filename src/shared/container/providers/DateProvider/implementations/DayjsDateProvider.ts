@@ -1,4 +1,4 @@
-import { IDateProvider } from "../../IDateProvider";
+import { IDateProvider } from "../../DateProvider/IDateProvider";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
