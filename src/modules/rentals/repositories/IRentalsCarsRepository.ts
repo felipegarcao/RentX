@@ -10,6 +10,7 @@ interface IRentalsCarsRepository {
     user_id,
   }: ICreateRentalDTO): Promise<Rental>;
   findById(id: string): Promise<Rental>;
+  findByUser(user_id: string): Promise<Rental[]>
 }
 
 export { IRentalsCarsRepository };

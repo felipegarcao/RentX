@@ -1,15 +1,21 @@
-
-import {Request, Response} from 'express'
-
+import { Request, Response } from "express";
+import { DevolutionRentalUseCase } from "./DevolutionRentalUseCase";
+import { container } from "tsyringe";
 
 class DevolutionRentalController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { id: user_id } = request.user;
+    const { id } = request.params;
 
-  async handle(request: Request, response: Response): Promise<Response>{
+    const devolutionRentalUseCase = container.resolve(DevolutionRentalUseCase);
 
+    const rental = await devolutionRentalUseCase.execute({
+      id,
+      user_id,
+    });
 
-    return response.status(201).json({message: "teste"})
+    return response.status(200).json(rental);
   }
-
 }
 
-export {DevolutionRentalController}
+export { DevolutionRentalController };
