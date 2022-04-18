@@ -14,6 +14,9 @@
         "tags": ["Category"],
         "summary": "Create a Category",
         "description": "Create a new Category",
+        "security": [{
+          "bearerAuth": []
+        }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -126,6 +129,38 @@
           }
         }
       }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["Session"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email or password incorrect"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -135,9 +170,18 @@
         "name": {
           "type": "string"
         },
-        "description":{
+        "description": {
           "type": "string"
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
