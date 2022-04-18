@@ -81,6 +81,9 @@
         "tags": ["Category"],
         "summary": "Upload a new category",
         "description": "Upload a new category",
+        "security": [{
+          "bearerAuth": []
+        }],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -111,6 +114,9 @@
         "tags": ["Specifications"],
         "summary": "Create a specification",
         "description": "Create a new specification",
+        "security": [{
+          "bearerAuth": []
+        }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -161,6 +167,30 @@
           }
         }
       }
+    },
+    "/cars": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create a new car",
+        "description": "Create a new car",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Car successfully created"
+          },
+          "400": {
+            "description": "car already exists"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -171,6 +201,32 @@
           "type": "string"
         },
         "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Car": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "license_plate": {
+          "type": "string"
+        },
+        "fine_amount": {
+          "type": "number"
+        },
+        "daily_rate": {
+          "type": "number"
+        },
+        "category_id": {
           "type": "string"
         }
       }
