@@ -3,6 +3,7 @@ import { Rental } from "@modules/rentals/infra/typeorm/entities/Rentals";
 import { IRentalsCarsRepository } from "../IRentalsCarsRepository";
 
 class RentalsRepositoryInMemory implements IRentalsCarsRepository {
+  
   async create({ car_id, expected_return_date, user_id, }: ICreateRentalDTO): Promise<Rental> {
     
     const rental = new Rental();
@@ -29,6 +30,17 @@ class RentalsRepositoryInMemory implements IRentalsCarsRepository {
     const openRentalUser = this.rentals.find((rental) => rental.user_id === user_id && !rental.end_date);
 
     return openRentalUser;
+  }
+
+  async findById(id: string): Promise<Rental> {
+    const rental = this.rentals.find((rental) => rental.id === id);
+    
+    return rental;
+  }
+  async findByUser(user_id: string): Promise<Rental[]> {
+    const rental = this.rentals.filter((rental) => rental.user_id === user_id);
+
+    return rental;
   }
 }
 
