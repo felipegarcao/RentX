@@ -3,16 +3,20 @@ import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UsersRepositoryInMemory } from "@modules/accounts/Repositories/in-memory/UserRepositoryInMemory";
 import { CreateUseCase } from "@modules/accounts/useCases/createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
 
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUseCase: CreateUseCase;
+let usersTokensRepository: UsersTokensRepository;
 
 describe("Authenticate User", () => {
   beforeEach(() => {
+    usersTokensRepository = new UsersTokensRepository();
     usersRepositoryInMemory = new UsersRepositoryInMemory();
     authenticateUserUseCase = new AuthenticateUserUseCase(
-      usersRepositoryInMemory
+      usersRepositoryInMemory,
+      usersTokensRepository
     );
     createUserUseCase = new CreateUseCase(usersRepositoryInMemory);
   });
