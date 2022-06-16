@@ -1,4 +1,4 @@
-**RF** => Requisitos Funcionais 
+**RF** => Requisitos Funcionais
 
 **RNF** => Requisitos não Funcionais
 
@@ -14,7 +14,6 @@ Não deve ser possível cadastrar um carro com uma placa ja existente.
 Não deve ser possível alterar a placa de um carro ja cadastrado.
 O Carro deve ser cadastrado com disponibilidade por padrão.
 O usuário responsável pelo cadastro deve ser um usuário administrador.
-
 
 # Listagem de carros
 
@@ -63,7 +62,6 @@ O usuário deve poder cadastrar mais de uma imagem para o mesmo carro.
 
 O usuário responsável pelo cadastro deve ser um usuário administrador.
 
-
 # Aluguel de carro
 
 **RF**
@@ -92,7 +90,7 @@ Ao realizar a devolução, o carro devera ser liberado para outro aluguel.
 Ao realizar a devolução, o usuário devera ser liberado para outro aluguel.
 Ao realizar a devolução, devera ser calculado o total do aluguel.
 Caso horário de devolução seja superior ao horário previsto de entrega, devera ser cobrado multa proporcional aos dias de atraso.
-Caso haja multa, devera  ser somado ao total do aluguel.
+Caso haja multa, devera ser somado ao total do aluguel.
 
 # Listagem de Alugueis para usuário
 
@@ -101,3 +99,16 @@ Deve ser possível realizar a busca de todos os alugueis para o usuário.
 
 **RN**
 O usuário deve estar logado na aplicação
+
+# Recuperar Senha
+
+**RF**
+
+- Deve ser possivel o usuario recuperar a senha informando o e-mail
+- O Usuario deve receber um e-mail com o passo a passo da recuperação da senha
+- O Usuario deve conseguir inserir uma nova senha
+
+**RN**
+
+- O usuario precisa informar uma nova senha
+- o link enviado para a recuperação deve expirar em 3 horas
