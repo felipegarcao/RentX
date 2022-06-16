@@ -31,11 +31,13 @@ class AuthenticateUserUseCase {
     private usersTokensRepository: IUserTokensRepository,
     @inject("DayjsDateProvider")
     private dateProvider: IDateProvider
-  ) {}
+  ) {}    
   async execute({ email, password }: IRequest): Promise<IResponse> {
     // Usuário existente
     const user = await this.usersRepository.findByEmail(email);
 
+
+    // para não precisar ficar colocando auth.secret_token por exemplo.
     const {
       expires_in_token,
       secret_token,

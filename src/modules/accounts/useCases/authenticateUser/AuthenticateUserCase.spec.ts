@@ -16,7 +16,7 @@ describe("Authenticate User", () => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
     authenticateUserUseCase = new AuthenticateUserUseCase(
       usersRepositoryInMemory,
-      usersTokensRepository
+      usersTokensRepository,
     );
     createUserUseCase = new CreateUseCase(usersRepositoryInMemory);
   });
