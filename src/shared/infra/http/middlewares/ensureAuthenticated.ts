@@ -1,0 +1,37 @@
+import { UserRepository } from "@modules/accounts/infra/typeorm/repositories/UserRepository";
+import { Request, Response, NextFunction } from "express";
+import { verify } from "jsonwebtoken";
+import { AppError } from "@shared/errors/AppError";
+import { UsersTokensRepository } from "@modules/accounts/infra/typeorm/repositories/UsersTokensRepository";
+import auth from "@config/auth";
+
+interface IPayload {
+  sub: string;
+}
+
+export async function ensureAuthenticated(
+  request: Request,
+  response: Response,
+  next: NextFunction
+) {
+  const authToken = request.headers.authorization;
+
+  // Verificação para ver se o token esta vindo preenchido
+  if (!authToken) {
+    throw new AppError("Token Missing", 401);
+  }
+  // Caso esteja....
+  const [, token] = authToken.split(" ");
+
+  try {
+    const { sub: user_id } = verify(token, auth.secret_token) as IPayload;
+
+    request.user = {
+      id: user_id,
+    };
+
+    next();
+  } catch (e) {
+    throw new AppError("Invalid Token", 401);
+  }
+}
